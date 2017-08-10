@@ -34,7 +34,7 @@ app.controller('MainController', function($scope) {
       commandLine.push("--export-options export-minimal");
     }
     
-    if (selectedCommand.opOutput && $scope.outputFile) {
+    if (selectedCommand.opOutput && $scope.output == "1" && $scope.outputFile) {
       commandLine.push("--output");
       commandLine.push($scope.outputFile);
     }
@@ -55,7 +55,7 @@ app.controller('MainController', function($scope) {
       commandLine.push($scope.key);
     }
 
-    if (selectedCommand.opInput && $scope.inputFile) {
+    if (selectedCommand.opInput && $scope.input == "1" && $scope.inputFile) {
       commandLine.push($scope.inputFile);
     }
 

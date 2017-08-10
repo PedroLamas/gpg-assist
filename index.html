@@ -70,10 +70,35 @@
         </div>
       </div>
 
-      <div class="form-group" data-ng-show="selectedCommand.opOutput">
-        <label for="outputFile" class="control-label col-sm-3">the output file is</label>
+      <div class="form-group" data-ng-show="selectedCommand.opInput">
+        <label for="input" class="control-label col-sm-3">from</label>
         <div class="col-sm-9">
-          <input type="text" id="outputFile" class="form-control" data-ng-model="outputFile" />
+          <select id="input" class="form-control" data-ng-model="input">
+            <option value="">the standard input (stdin)</option>
+            <option value="1">the following input file</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opInput && input=='1'">
+        <div class="col-sm-offset-3 col-sm-9">
+          <input type="text" placeholder="(input file)" class="form-control" data-ng-model="inputFile" />
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opOutput">
+        <label for="output" class="control-label col-sm-3">to</label>
+        <div class="col-sm-9">
+          <select id="output" class="form-control" data-ng-model="output">
+            <option value="">the standard output (stdout)</option>
+            <option value="1">the following output file</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opOutput && output=='1'">
+        <div class="col-sm-offset-3 col-sm-9">
+          <input type="text" placeholder="(output file)" class="form-control" data-ng-model="outputFile" />
         </div>
       </div>
 
@@ -88,13 +113,6 @@
         <label for="key" class="control-label col-sm-3">the key id is</label>
         <div class="col-sm-9">
           <input type="text" id="key" class="form-control" data-ng-model="key" />
-        </div>
-      </div>
-
-      <div class="form-group" data-ng-show="selectedCommand.opInput">
-        <label for="inputFile" class="control-label col-sm-3">the input file is</label>
-        <div class="col-sm-9">
-          <input type="text" id="inputFile" class="form-control" data-ng-model="inputFile" />
         </div>
       </div>
 
