@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GPG Assist</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.min.js"></script>
+  </head>
+<body>
+
+<div data-ng-app="MainApp" data-ng-controller="MainController">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>GPG Assist</h1>
+      <p>GnuPG CLI assistant, showcasing some of the available commands</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <form class="form-horizontal">
+      
+      <div class="form-group">
+        <div class="col-sm-12">
+          <div class="input-group codebox">
+            <span class="input-group-addon input-lg">&gt;</span>
+            <input type="text" readonly="readonly" class="form-control input-lg" data-ng-model="buildCommandLine()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="selectedCommand" class="control-label col-sm-3">I want to</label>
+        <div class="col-sm-9">
+          <select id="selectedCommand" class="form-control" data-ng-model="selectedCommand" data-ng-options="command.description for command in availableCommands"></select>
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opArmor">
+        <div class="col-sm-offset-3 col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" data-ng-model="hasArmor" />
+              with armor
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opOutput">
+        <label for="outputFile" class="control-label col-sm-3">the output file is</label>
+        <div class="col-sm-9">
+          <input type="text" id="outputFile" class="form-control" data-ng-model="outputFile" />
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opRecipient">
+        <label for="recipient" class="control-label col-sm-3">the recipient is</label>
+        <div class="col-sm-9">
+          <input type="text" id="recipient" class="form-control" data-ng-model="recipient" />
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opKey">
+        <label for="key" class="control-label col-sm-3">the key id is</label>
+        <div class="col-sm-9">
+          <input type="text" id="key" class="form-control" data-ng-model="key" />
+        </div>
+      </div>
+
+      <div class="form-group" data-ng-show="selectedCommand.opInput">
+        <label for="inputFile" class="control-label col-sm-3">the input file is</label>
+        <div class="col-sm-9">
+          <input type="text" id="inputFile" class="form-control" data-ng-model="inputFile" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <div class="checkbox" data-ng-show="selectedCommand.expertCommand">
+            <label>
+              <input type="checkbox" data-ng-model="isExpert" />
+              trust me, I'm an expert!
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
