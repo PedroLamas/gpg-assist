@@ -5,7 +5,7 @@ app.controller('MainController', function($scope) {
     { description: "generate a new key", command: "--generate-key", expertCommand: "--expert --full-generate-key" },
     { description: "list all keys", command: "--list-keys", opKey: true },
     { description: "list all keys with their fingerprints", command: "--fingerprint", opKey: true },
-    { description: "export a public key", command: "--export", opArmor: true, opOutput: true, opKey: true },
+    { description: "export a public key", command: "--export", opArmor: true, opMinimal: true, opOutput: true, opKey: true },
     { description: "export a private key", command: "--export-secret-key", opArmor: true, opOutput: true, opKey: true },
     { description: "import a key", command: "--import", opInput: true },
     { description: "delete a public key", command: "--delete-keys", opKey: true },
@@ -28,6 +28,10 @@ app.controller('MainController', function($scope) {
 
     if (selectedCommand.opArmor && $scope.hasArmor) {
       commandLine.push("--armor");
+    }
+
+    if (selectedCommand.opMinimal && $scope.isMinimal) {
+      commandLine.push("--export-options export-minimal");
     }
     
     if (selectedCommand.opOutput && $scope.outputFile) {

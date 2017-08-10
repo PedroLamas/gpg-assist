@@ -59,6 +59,17 @@
         </div>
       </div>
 
+      <div class="form-group" data-ng-show="selectedCommand.opMinimal">
+        <div class="col-sm-offset-3 col-sm-9">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" data-ng-model="isMinimal" />
+              use minimal output
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="form-group" data-ng-show="selectedCommand.opOutput">
         <label for="outputFile" class="control-label col-sm-3">the output file is</label>
         <div class="col-sm-9">
